@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Autenticar-se</title>
+
+	<link rel="stylesheet" type="text/css" href="mirror-login-form.css">
+	<link href="http://infiniteiotdevices.com/images/logo.png" rel="icon" sizes="16x16" type="image/gif" />
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		.bg-danger{background: red; border-radius: 5px;}
+	</style>
+</head>
+<body>
+	<div class="loginBox">
+		<div class="glass">
+			<img src="assets/images/auth/user.png" class="user">
+			<h3>Autenticar-se</h3>
+			<form action="/admAuth" method="post">
+				<div class="inputBox">
+					<input type="text" name="user" placeholder="Username" required>
+					<span><i class="fa fa-user"></i></span>
+				</div>
+				<div class="inputBox">
+					<input type="password" name="password" placeholder="password" required>
+					<span><i class="fa fa-lock"></i></span>
+				</div>
+				<input type="submit"  value="Login">
+			</form>
+
+			<ul>
+				<li>
+				<a href="#" class="front"><i class="fa fa-facebook"></i></a><br>
+				<a href="#" class="back">Facebook</a>
+				</li>
+				<li>
+				<a href="#" class="front"><i class="fa fa-google"></i></a><br>
+				<a href="#" class="back">Google</a>
+				</li>
+			</ul>
+			<% if(mensagem){  %> 
+				<div class="bg-danger">
+					<h4 class="">Dados incorrectos!</h4>
+				</div>
+			<% } %>  
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>HeroBiz Bootstrap Template - Home 2</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Variables CSS Files. Uncomment your preferred color scheme -->
+  <link href="assets/css/variables-red.css" rel="stylesheet">
+  <!-- <link href="assets/css/variables-blue.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-green.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-orange.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-purple.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-red.css" rel="stylesheet"> -->
+  <!-- <link href="assets/css/variables-pink.css" rel="stylesheet"> -->
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    /* Estilos adicionais */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top" data-scrollto-offset="0">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Kalassi<span>.</span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+          <li class=""><a href="#"><span>Home</span> <i class="bi bi-home "></i></a>
+          <li class=""><a href="#"><span>Pesquisar</span> <i class="bi bi-home "></i></a></li>
+          <li><a class="nav-link scrollto active" href="#">Orientação Académica</a></li>
+          <li><a class="nav-link scrollto" href="#">Biblioteca</a></li>
+          
+          <li><a class="nav-link scrollto" href="index.html#about">Sobre</a></li>
+        
+          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle d-none"></i>
+      </nav><!-- .navbar -->
+
+      
+
+    </div>
+  </header><!-- End Header -->
+
+  
+  <main id="main">
+        <!-- ======= Call To Action Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-out">
+
+        <div class="row g-5">
+
+          <div class="mt-5 col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+            <h3>Faça um teste rápido de <em>orientação académica</em></h3>
+            <p> Faça O teste de orientação vocacional e descubro o curso ideal para si..</p>
+            <a class="cta-btn align-self-start" href="#" onclick="startAssessment()">Começar o teste</a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
+            <div class="img">
+              <img src="assets/img/orient1.jpg" alt="" class="img-fluid">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Call To Action Section -->
+  </main><!-- End #main -->
+
+
+ 
+
+  <!-- Question Modal -->
+  <div id="questionModal" class="modal">
+    <div class="modal-content bg-white rounded-lg shadow-md mx-auto mt-20 p-6">
+      <span class="close" onclick="closeQuestionModal()">&times;</span>
+      <h2 id="questionTitle" class="text-xl font-bold mb-4"></h2>
+      <form id="questionForm">
+        <input type="radio" id="yes" name="answer" value="yes" class="mr-2">
+        <label for="yes">Sim</label><br>
+        <input type="radio" id="no" name="answer" value="no" class="mr-2">
+        <label for="no">Não</label><br><br>
+        <button type="button" onclick="submitAnswer()" class="btn btn-danger">Confirmar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Result Modal -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content bg-white rounded-lg shadow-md mx-auto mt-20 p-6">
+      <span class="close" onclick="closeResultModal()">&times;</span>
+      <h2 class="text-xl font-bold mb-4">Cursos Compatíveis</h2>
+      <ul id="compatibleCourses" class="list-disc pl-6"></ul>
+    </div>
+  </div>
+
+   <!-- ======= Footer ======= -->
+   <footer id="footer" class="footer">
+    <div class="footer-legal text-center">
+      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+        <div class="d-flex flex-column align-items-center align-items-lg-start">
+          <div class="copyright">
+            &copy; Copyright <strong><span>kalassi</span></strong>. Todos os direitos reservados.
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
+            Concebido por <a href="https://bootstrapmade.com/">Kalassi</a>
+          </div>
+        </div>
+
+        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+          <a href="#" class="twitter"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-telegram"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bi bi-envelope"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+
+      </div>
+    </div> 
+
+  </footer><!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- JavaScript -->
+  <script>
+    const questions = [
+      {
+        question: "Gosta de resolver problemas práticos?",
+        answers: {
+          yes: ["Engenharia", "Medicina", "Arquitetura", "Gastronomia", "Engenharia Civil"],
+          no: []
+        }
+      },
+      {
+        question: "Interessa-se por matemática e física?",
+        answers: {
+          yes: ["Engenharia"],
+          no: []
+        }
+      },
+      {
+        question: "Gosta de liderar e organizar atividades?",
+        answers: {
+          yes: ["Administração"],
+          no: []
+        }
+      },
+      {
+        question: "Interessa-se por gestão e estratégia de negócios?",
+        answers: {
+          yes: ["Administração"],
+          no: []
+        }
+      },
+      // Adicione mais perguntas conforme necessário
+    ];
+
+    let currentQuestionIndex = 0;
+    let compatibleCourses = [];
+
+    function startAssessment() {
+      showQuestionModal();
+    }
+
+    function showQuestionModal() {
+      const modal = document.getElementById("questionModal");
+      const questionTitle = document.getElementById("questionTitle");
+      const questionForm = document.getElementById("questionForm");
+      const currentQuestion = questions[currentQuestionIndex];
+
+      questionTitle.textContent = currentQuestion.question;
+      questionForm.reset();
+      modal.style.display = "block";
+    }
+
+    function closeQuestionModal() {
+      const modal = document.getElementById("questionModal");
+      modal.style.display = "none";
+    }
+
+    function submitAnswer() {
+      const answer = document.querySelector('input[name="answer"]:checked').value;
+      const currentQuestion = questions[currentQuestionIndex];
+
+      if (answer === "yes") {
+        compatibleCourses = compatibleCourses.concat(currentQuestion.answers.yes);
+      }
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestionModal();
+      } else {
+        closeQuestionModal();
+        showResultModal();
+      }
+    }
+
+    function showResultModal() {
+      const modal = document.getElementById("resultModal");
+      const courseList = document.getElementById("compatibleCourses");
+      courseList.innerHTML = "";
+
+      const uniqueCourses = Array.from(new Set(compatibleCourses));
+      uniqueCourses.forEach(course => {
+        const listItem = document.createElement("li");
+        listItem.textContent = course;
+        courseList.appendChild(listItem);
+      });
+
+      modal.style.display = "block";
+    }
+
+    function closeResultModal() {
+      const modal = document.getElementById("resultModal");
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      const questionModal = document.getElementById("questionModal");
+      const resultModal = document.getElementById("resultModal");
+
+      if (event.target == questionModal) {
+        questionModal.style.display = "none";
+      }
+      if (event.target == resultModal) {
+        resultModal.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+
+</html>

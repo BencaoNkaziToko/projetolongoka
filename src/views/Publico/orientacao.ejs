@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Minha Página</title>
+    <style>
+              /* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu li:last-child {
+    margin-right: 0;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu {
+        margin-top: 15px;
+    }
+
+    .menu li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+    /* Estilos para o modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">L🎓ngoka</div>
+                <ul class="menu">
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/orientacao">académica</a></li>
+                    <li><a href="/livros">Biblioteca</a></li>
+                    <li><a href="/sobre">Sobre</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    
+    <div>card centralizado sobre o processo de orientacao académica</div>
+    <div class="content">
+      <div id="perguntas">
+        <!-- As perguntas serão inseridas aqui -->
+      </div>
+      <button onclick="iniciarOrientacao()" class="">Iniciar Orientação</button>
+    
+      <!-- Modal -->
+      <div id="resultadoModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="fecharModal()">&times;</span>
+          <h2>Cursos Compatíveis</h2>
+          <ul id="listaCursos"></ul>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+
+
+
+    
+  <script>
+    const cursos = {
+      "Engenharias(CMecânica, Electrotecnica, Telecomunicações, outras a fins)": ["Gosta de resolver problemas práticos?", "Interessa-se por matemática e física?"],
+      "Administração": ["Gosta de liderar e organizar atividades?", "Interessa-se por gestão e estratégia de negócios?"],
+      "Medicina": ["Tem interesse em ajudar os outros?", "Gosta de lidar com questões relacionadas à saúde?"],
+      "Design": ["Tem habilidades criativas?", "Gosta de expressar suas ideias visualmente?"],
+      "Ciência da Computação": ["Gosta de resolver problemas lógicos?", "Interessa-se por tecnologia e programação?"],
+      "Psicologia": ["Gosta de compreender o comportamento humano?", "Interessa-se por terapia e aconselhamento?"],
+      "Direito": ["Gosta de debater e argumentar?", "Interessa-se por justiça e resolução de conflitos?"],
+      "Educação": ["Gosta de ensinar e transmitir conhecimento?", "Interessa-se por pedagogia e desenvolvimento educacional?"],
+      "Arquitetura": ["Tem interesse em criar espaços habitáveis?", "Gosta de desenhar e visualizar projetos arquitetônicos?"],
+      "Jornalismo": ["Gosta de investigar e relatar eventos?", "Interessa-se por comunicação e mídia?"],
+      "Gastronomia": ["Gosta de cozinhar e experimentar novos sabores?", "Interessa-se por gastronomia e culinária?"],
+      "Engenharia Civil": ["Gosta de construir estruturas e infraestruturas?", "Interessa-se por engenharia e construção?"],
+      "Artes Cênicas": ["Tem habilidades de atuação?", "Interessa-se por teatro e performance?"],
+    };
+
+    let perguntasDiv;
+    let resultadoModal;
+
+    function iniciarOrientacao() {
+      perguntasDiv = document.getElementById("perguntas");
+      resultadoModal = document.getElementById("resultadoModal");
+
+      mostrarProximaPergunta();
+    }
+
+    function mostrarProximaPergunta() {
+      if (perguntasDiv.children.length === 0) {
+        mostrarResultado();
+        return;
+      }
+
+      const proximaPergunta = perguntasDiv.firstElementChild;
+      perguntasDiv.removeChild(proximaPergunta);
+      const curso = proximaPergunta.dataset.curso;
+      const pergunta = proximaPergunta.dataset.index;
+
+      const resposta = prompt(cursos[curso][pergunta] + " ([S]-sim/[N]-não)").toLowerCase();
+      if (resposta === "s") {
+        mostrarProximaPergunta();
+      } else {
+        const novaPergunta = proximaPergunta.cloneNode(true);
+        perguntasDiv.appendChild(novaPergunta);
+      }
+    }
+
+    function mostrarResultado() {
+      const cursosCompatíveis = [];
+      for (let curso in cursos) {
+        let compativel = true;
+        for (let i = 0; i < cursos[curso].length; i++) {
+          const resposta = prompt(cursos[curso][i] + " ([S]-sim/[N]-não)").toLowerCase();
+          if (resposta !== "s") {
+            compativel = false;
+            break;
+          }
+        }
+        if (compativel) {
+          cursosCompatíveis.push(curso);
+        }
+      }
+
+      const listaCursos = document.getElementById("listaCursos");
+      listaCursos.innerHTML = "";
+      cursosCompatíveis.forEach(curso => {
+        const itemCurso = document.createElement("li");
+        itemCurso.textContent = curso;
+        listaCursos.appendChild(itemCurso);
+      });
+
+      resultadoModal.style.display = "block";
+    }
+
+    function fecharModal() {
+      resultadoModal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
